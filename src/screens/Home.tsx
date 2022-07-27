@@ -1,4 +1,5 @@
 import {
+  Center,
   FlatList,
   Heading,
   HStack,
@@ -7,7 +8,7 @@ import {
   useTheme,
   VStack,
 } from "native-base";
-import { SignOut } from "phosphor-react-native";
+import { ChatTeardropText, SignOut } from "phosphor-react-native";
 import { useState } from "react";
 import Logo from "../assets/logo_secondary.svg";
 import { Button } from "../components/Button";
@@ -19,24 +20,6 @@ export function Home() {
     "open"
   );
   const [orders, setOrders] = useState<OrderProps[]>([
-    {
-      id: "123",
-      patrimony: "909090",
-      when: "18/07/22 as 10:00",
-      status: "open",
-    },
-    {
-      id: "123",
-      patrimony: "909090",
-      when: "18/07/22 as 10:00",
-      status: "open",
-    },
-    {
-      id: "123",
-      patrimony: "909090",
-      when: "18/07/22 as 10:00",
-      status: "open",
-    },
     {
       id: "123",
       patrimony: "909090",
@@ -91,7 +74,19 @@ export function Home() {
         <FlatList
           data={orders}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <Order data={item}>{item.status}</Order>}
+          renderItem={({ item }) => <Order data={item} />}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 100 }}
+          ListEmptyComponent={() => (
+            <Center>
+              <ChatTeardropText color={colors.gray[300]} size={40} />
+              <Text color="gray.300" fontSize="xl" mt={6} textAlign="center">
+                Você ainda não possui {"\n"}
+                solicitações{" "}
+                {statusSelected === "open" ? "em andamento" : "finalizados"}
+              </Text>
+            </Center>
+          )}
         />
         <Button title="Nova solicitação" />
       </VStack>
