@@ -1,22 +1,34 @@
-import { Heading, Icon, VStack, useTheme } from "native-base";
-import { Envelope, Key } from "phosphor-react-native";
-import { useState } from "react";
+import auth from '@react-native-firebase/auth';
+import { Heading, Icon, VStack, useTheme } from 'native-base';
+import { Envelope, Key } from 'phosphor-react-native';
+import { useState } from 'react';
+import { Alert } from 'react-native';
 
-import Logo from "../assets/logo_primary.svg";
+import Logo from '../assets/logo_primary.svg';
 
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
+import { Button } from '../components/Button';
+import { Input } from '../components/Input';
 
 export function SignIn() {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const { colors } = useTheme();
+
+  // stop in class 47:25 5 lesson
+
+  function handleSignIn() {
+    if (!email || !password) {
+      return Alert.alert('Entrar', 'Informe e-mail e senha');
+    }
+    console.log(email, password);
+  }
+
   return (
     <VStack flex={1} alignItems="center" bg="gray.600" px={8} pt={24}>
       <Logo />
       <Heading color="gray.100" fontSize="xl" mt={20} mb={6}>
-        Acesse sua conta {name}
+        Acesse sua conta
       </Heading>
 
       <Input
@@ -25,7 +37,7 @@ export function SignIn() {
         InputLeftElement={
           <Icon as={<Envelope color={colors.gray[300]} />} ml={4} />
         }
-        onChangeText={setName}
+        onChangeText={setEmail}
       />
       <Input
         mb={8}
@@ -35,7 +47,7 @@ export function SignIn() {
         onChangeText={setPassword}
       />
 
-      <Button title="Entrar" w="full" />
+      <Button title="Entrar" w="full" onPress={handleSignIn} />
     </VStack>
   );
 }
