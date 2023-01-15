@@ -7,7 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 import { OrderFirestoreDTO } from "../DTOs/OrderDTO";
 import { dateFormat } from "../utils/firestoreDateFormat";
 import { Loading } from "../components/Loadind";
-import { CircleWavyCheck, Clipboard, DesktopTower, Hourglass } from "phosphor-react-native";
+import { CircleWavyCheck, ClipboardText, DesktopTower, Hourglass } from "phosphor-react-native";
 import { CardDetails } from "../components/CardDetails";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
@@ -79,7 +79,7 @@ export function Details() {
   }
   return (
     <VStack flex={1} bg="gray.700">
-      <Box p={6} bg="gray.600">
+      <Box px={6} bg="gray.600">
       <Header title="solicitação" />
       </Box>
       <HStack bg="gray.500" justifyContent="center" p={4}>
@@ -97,8 +97,8 @@ export function Details() {
 
       <ScrollView mx={5} showsVerticalScrollIndicator={false}>
 
-        <CardDetails title="equipamento" description={`Patrimônio ${order.patrimony}`} icon={DesktopTower} footer={order.when} />
-        <CardDetails title="descrição do problema" description={order.description} icon={Clipboard} />
+        <CardDetails title="equipamento" description={`Patrimônio ${order.patrimony}`} icon={DesktopTower}  />
+        <CardDetails title="descrição do problema" description={order.description} icon={ClipboardText} footer={`Registrado em ${order.when}`} />
         <CardDetails title="solução" description={order.solution} icon={CircleWavyCheck} footer={order.closed && `Encerrado em ${order.closed}`} > 
         
         {order.status === 'open' && <Input 
