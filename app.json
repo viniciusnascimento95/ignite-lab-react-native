@@ -3,8 +3,12 @@
     "name": "rockethelp",
     "slug": "rockethelp",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
-    "plugins": ["@react-native-firebase/app"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "plugins": [
+      "@react-native-firebase/app"
+    ],
     "android": {
       "package": "com.rockethelp",
       "googleServicesFile": "./google-services.json"
@@ -12,6 +16,11 @@
     "ios": {
       "bundleIdentifier": "com.rockethelp",
       "googleServicesFile": "./GoogleService-Info.plist"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fde5370a-d928-44a6-aaa8-8285f264aa87"
+      }
     }
   }
 }
